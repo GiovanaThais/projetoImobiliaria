@@ -1,0 +1,7 @@
+> conda info --json
+> /bin/python3 ~/.vscode/extensions/ms-python.python-2021.12.1559732655/pythonFiles/interpreterInfo.py
+> /usr/bin/python3 ~/.vscode/extensions/ms-python.python-2021.12.1559732655/pythonFiles/interpreterInfo.py
+Python interpreter path: /bin/python3
+Starting Pylance language server.
+> conda --version
+> conda --version

@@ -1,0 +1,253 @@
+[2022-02-01 14:40:02.029] [renderer1] [error] [Extension Host] (node:11544) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+(Use `code --trace-deprecation ...` to show where the warning was created)
+[2022-02-01 14:40:12.048] [renderer1] [error] Error while registering log channel file:///home/giovana/.config/Code/logs/20220201T144000/userDataSync.log Timed out while waiting for file to be created
+[2022-02-01 16:11:50.463] [renderer1] [error] Cannot read property 'length' of undefined: TypeError: Cannot read property 'length' of undefined
+	at /home/giovana/.vscode/extensions/ms-python.python-2021.12.1559732655/out/client/extension.js:67:257359
+	at p (/home/giovana/.vscode/extensions/ms-python.python-2021.12.1559732655/out/client/extension.js:67:262355)
+	at async z.provideCompletionItems (/usr/share/code/resources/app/out/vs/workbench/services/extensions/node/extensionHostProcess.js:95:101516)
+[2022-02-01 16:12:12.765] [renderer1] [error] name must not be falsy: Error: name must not be falsy
+	at Function.validate (/usr/share/code/resources/app/out/vs/workbench/services/extensions/node/extensionHostProcess.js:86:30561)
+	at new t (/usr/share/code/resources/app/out/vs/workbench/services/extensions/node/extensionHostProcess.js:86:30510)
+	at new t (/usr/share/code/resources/app/out/vs/workbench/services/extensions/node/extensionHostProcess.js:86:17301)
+	at B (/home/giovana/.vscode/extensions/ms-python.python-2021.12.1559732655/out/client/extension.js:67:215318)
+	at Array.map (<anonymous>)
+	at Object.asDocumentSymbols (/home/giovana/.vscode/extensions/ms-python.python-2021.12.1559732655/out/client/extension.js:67:220656)
+	at /home/giovana/.vscode/extensions/ms-python.python-2021.12.1559732655/out/client/extension.js:24:124585
+	at async s.provideDocumentSymbols (/usr/share/code/resources/app/out/vs/workbench/services/extensions/node/extensionHostProcess.js:95:87704)
+[2022-02-01 16:14:14.176] [renderer1] [error] name must not be falsy: Error: name must not be falsy
+	at Function.validate (/usr/share/code/resources/app/out/vs/workbench/services/extensions/node/extensionHostProcess.js:86:30561)
+	at new t (/usr/share/code/resources/app/out/vs/workbench/services/extensions/node/extensionHostProcess.js:86:30510)
+	at new t (/usr/share/code/resources/app/out/vs/workbench/services/extensions/node/extensionHostProcess.js:86:17301)
+	at B (/home/giovana/.vscode/extensions/ms-python.python-2021.12.1559732655/out/client/extension.js:67:215318)
+	at Array.map (<anonymous>)
+	at Object.asDocumentSymbols (/home/giovana/.vscode/extensions/ms-python.python-2021.12.1559732655/out/client/extension.js:67:220656)
+	at /home/giovana/.vscode/extensions/ms-python.python-2021.12.1559732655/out/client/extension.js:24:124585
+	at async s.provideDocumentSymbols (/usr/share/code/resources/app/out/vs/workbench/services/extensions/node/extensionHostProcess.js:95:87704)
+[2022-02-01 16:16:51.666] [renderer1] [error] Cannot read property 'length' of undefined: TypeError: Cannot read property 'length' of undefined
+	at /home/giovana/.vscode/extensions/ms-python.python-2021.12.1559732655/out/client/extension.js:67:257359
+	at p (/home/giovana/.vscode/extensions/ms-python.python-2021.12.1559732655/out/client/extension.js:67:262355)
+	at async z.provideCompletionItems (/usr/share/code/resources/app/out/vs/workbench/services/extensions/node/extensionHostProcess.js:95:101516)
+[2022-02-01 16:22:19.253] [renderer1] [error] [Extension Host] validating /home/giovana/.config/Code/User/globalStorage/tabnine.tabnine-vscode/binaries/4.0.60/x86_64-unknown-linux-musl/TabNine timeout
+[2022-02-01 16:23:36.168] [renderer1] [error] Cannot read property 'length' of undefined: TypeError: Cannot read property 'length' of undefined
+	at /home/giovana/.vscode/extensions/ms-python.python-2021.12.1559732655/out/client/extension.js:67:257359
+	at p (/home/giovana/.vscode/extensions/ms-python.python-2021.12.1559732655/out/client/extension.js:67:262355)
+	at async z.provideCompletionItems (/usr/share/code/resources/app/out/vs/workbench/services/extensions/node/extensionHostProcess.js:95:101516)
+[2022-02-01 16:32:52.783] [renderer1] [error] Cannot read property 'length' of undefined: TypeError: Cannot read property 'length' of undefined
+	at /home/giovana/.vscode/extensions/ms-python.python-2021.12.1559732655/out/client/extension.js:67:257359
+	at p (/home/giovana/.vscode/extensions/ms-python.python-2021.12.1559732655/out/client/extension.js:67:262355)
+	at async z.provideCompletionItems (/usr/share/code/resources/app/out/vs/workbench/services/extensions/node/extensionHostProcess.js:95:101516)
+[2022-02-01 16:32:53.840] [renderer1] [error] name must not be falsy: Error: name must not be falsy
+	at Function.validate (/usr/share/code/resources/app/out/vs/workbench/services/extensions/node/extensionHostProcess.js:86:30561)
+	at new t (/usr/share/code/resources/app/out/vs/workbench/services/extensions/node/extensionHostProcess.js:86:30510)
+	at new t (/usr/share/code/resources/app/out/vs/workbench/services/extensions/node/extensionHostProcess.js:86:17301)
+	at B (/home/giovana/.vscode/extensions/ms-python.python-2021.12.1559732655/out/client/extension.js:67:215318)
+	at Array.map (<anonymous>)
+	at Object.asDocumentSymbols (/home/giovana/.vscode/extensions/ms-python.python-2021.12.1559732655/out/client/extension.js:67:220656)
+	at /home/giovana/.vscode/extensions/ms-python.python-2021.12.1559732655/out/client/extension.js:24:124585
+	at async s.provideDocumentSymbols (/usr/share/code/resources/app/out/vs/workbench/services/extensions/node/extensionHostProcess.js:95:87704)
+[2022-02-01 17:21:35.966] [renderer1] [error] Cannot read property 'length' of undefined: TypeError: Cannot read property 'length' of undefined
+	at /home/giovana/.vscode/extensions/ms-python.python-2021.12.1559732655/out/client/extension.js:67:257359
+	at p (/home/giovana/.vscode/extensions/ms-python.python-2021.12.1559732655/out/client/extension.js:67:262355)
+	at async z.provideCompletionItems (/usr/share/code/resources/app/out/vs/workbench/services/extensions/node/extensionHostProcess.js:95:101516)
+[2022-02-01 17:27:53.324] [renderer1] [error] Cannot read property 'length' of undefined: TypeError: Cannot read property 'length' of undefined
+	at /home/giovana/.vscode/extensions/ms-python.python-2021.12.1559732655/out/client/extension.js:67:257359
+	at p (/home/giovana/.vscode/extensions/ms-python.python-2021.12.1559732655/out/client/extension.js:67:262355)
+	at async z.provideCompletionItems (/usr/share/code/resources/app/out/vs/workbench/services/extensions/node/extensionHostProcess.js:95:101516)
+[2022-02-01 17:33:13.224] [renderer1] [error] Cannot read property 'length' of undefined: TypeError: Cannot read property 'length' of undefined
+	at /home/giovana/.vscode/extensions/ms-python.python-2021.12.1559732655/out/client/extension.js:67:257359
+	at p (/home/giovana/.vscode/extensions/ms-python.python-2021.12.1559732655/out/client/extension.js:67:262355)
+	at async z.provideCompletionItems (/usr/share/code/resources/app/out/vs/workbench/services/extensions/node/extensionHostProcess.js:95:101516)
+[2022-02-01 17:33:14.851] [renderer1] [error] name must not be falsy: Error: name must not be falsy
+	at Function.validate (/usr/share/code/resources/app/out/vs/workbench/services/extensions/node/extensionHostProcess.js:86:30561)
+	at new t (/usr/share/code/resources/app/out/vs/workbench/services/extensions/node/extensionHostProcess.js:86:30510)
+	at new t (/usr/share/code/resources/app/out/vs/workbench/services/extensions/node/extensionHostProcess.js:86:17301)
+	at B (/home/giovana/.vscode/extensions/ms-python.python-2021.12.1559732655/out/client/extension.js:67:215318)
+	at Array.map (<anonymous>)
+	at Object.asDocumentSymbols (/home/giovana/.vscode/extensions/ms-python.python-2021.12.1559732655/out/client/extension.js:67:220656)
+	at /home/giovana/.vscode/extensions/ms-python.python-2021.12.1559732655/out/client/extension.js:24:124585
+	at async s.provideDocumentSymbols (/usr/share/code/resources/app/out/vs/workbench/services/extensions/node/extensionHostProcess.js:95:87704)
+[2022-02-01 17:44:08.556] [renderer1] [error] Cannot read property 'length' of undefined: TypeError: Cannot read property 'length' of undefined
+	at /home/giovana/.vscode/extensions/ms-python.python-2021.12.1559732655/out/client/extension.js:67:257359
+	at p (/home/giovana/.vscode/extensions/ms-python.python-2021.12.1559732655/out/client/extension.js:67:262355)
+	at async z.provideCompletionItems (/usr/share/code/resources/app/out/vs/workbench/services/extensions/node/extensionHostProcess.js:95:101516)
+[2022-02-01 18:49:40.063] [renderer1] [error] Cannot read property 'length' of undefined: TypeError: Cannot read property 'length' of undefined
+	at /home/giovana/.vscode/extensions/ms-python.python-2021.12.1559732655/out/client/extension.js:67:257359
+	at p (/home/giovana/.vscode/extensions/ms-python.python-2021.12.1559732655/out/client/extension.js:67:262355)
+	at async z.provideCompletionItems (/usr/share/code/resources/app/out/vs/workbench/services/extensions/node/extensionHostProcess.js:95:101516)
+[2022-02-01 18:54:50.413] [renderer1] [error] name must not be falsy: Error: name must not be falsy
+	at Function.validate (/usr/share/code/resources/app/out/vs/workbench/services/extensions/node/extensionHostProcess.js:86:30561)
+	at new t (/usr/share/code/resources/app/out/vs/workbench/services/extensions/node/extensionHostProcess.js:86:30510)
+	at new t (/usr/share/code/resources/app/out/vs/workbench/services/extensions/node/extensionHostProcess.js:86:17301)
+	at B (/home/giovana/.vscode/extensions/ms-python.python-2021.12.1559732655/out/client/extension.js:67:215318)
+	at Array.map (<anonymous>)
+	at Object.asDocumentSymbols (/home/giovana/.vscode/extensions/ms-python.python-2021.12.1559732655/out/client/extension.js:67:220656)
+	at /home/giovana/.vscode/extensions/ms-python.python-2021.12.1559732655/out/client/extension.js:24:124585
+	at async s.provideDocumentSymbols (/usr/share/code/resources/app/out/vs/workbench/services/extensions/node/extensionHostProcess.js:95:87704)
+[2022-02-01 18:57:26.631] [renderer1] [error] Cannot read property 'length' of undefined: TypeError: Cannot read property 'length' of undefined
+	at /home/giovana/.vscode/extensions/ms-python.python-2021.12.1559732655/out/client/extension.js:67:257359
+	at p (/home/giovana/.vscode/extensions/ms-python.python-2021.12.1559732655/out/client/extension.js:67:262355)
+	at async z.provideCompletionItems (/usr/share/code/resources/app/out/vs/workbench/services/extensions/node/extensionHostProcess.js:95:101516)
+[2022-02-01 19:07:04.318] [renderer1] [error] Cannot read property 'length' of undefined: TypeError: Cannot read property 'length' of undefined
+	at /home/giovana/.vscode/extensions/ms-python.python-2021.12.1559732655/out/client/extension.js:67:257359
+	at p (/home/giovana/.vscode/extensions/ms-python.python-2021.12.1559732655/out/client/extension.js:67:262355)
+	at async z.provideCompletionItems (/usr/share/code/resources/app/out/vs/workbench/services/extensions/node/extensionHostProcess.js:95:101516)
+[2022-02-01 19:21:56.911] [renderer1] [error] Cannot read property 'length' of undefined: TypeError: Cannot read property 'length' of undefined
+	at /home/giovana/.vscode/extensions/ms-python.python-2021.12.1559732655/out/client/extension.js:67:257359
+	at p (/home/giovana/.vscode/extensions/ms-python.python-2021.12.1559732655/out/client/extension.js:67:262355)
+	at async z.provideCompletionItems (/usr/share/code/resources/app/out/vs/workbench/services/extensions/node/extensionHostProcess.js:95:101516)
+[2022-02-01 19:26:59.624] [renderer1] [error] Cannot read property 'length' of undefined: TypeError: Cannot read property 'length' of undefined
+	at /home/giovana/.vscode/extensions/ms-python.python-2021.12.1559732655/out/client/extension.js:67:257359
+	at p (/home/giovana/.vscode/extensions/ms-python.python-2021.12.1559732655/out/client/extension.js:67:262355)
+	at async z.provideCompletionItems (/usr/share/code/resources/app/out/vs/workbench/services/extensions/node/extensionHostProcess.js:95:101516)
+[2022-02-01 19:32:38.620] [renderer1] [error] Cannot read property 'length' of undefined: TypeError: Cannot read property 'length' of undefined
+	at /home/giovana/.vscode/extensions/ms-python.python-2021.12.1559732655/out/client/extension.js:67:257359
+	at p (/home/giovana/.vscode/extensions/ms-python.python-2021.12.1559732655/out/client/extension.js:67:262355)
+	at async z.provideCompletionItems (/usr/share/code/resources/app/out/vs/workbench/services/extensions/node/extensionHostProcess.js:95:101516)
+[2022-02-01 19:49:46.708] [renderer1] [error] Cannot read property 'length' of undefined: TypeError: Cannot read property 'length' of undefined
+	at /home/giovana/.vscode/extensions/ms-python.python-2021.12.1559732655/out/client/extension.js:67:257359
+	at p (/home/giovana/.vscode/extensions/ms-python.python-2021.12.1559732655/out/client/extension.js:67:262355)
+	at async z.provideCompletionItems (/usr/share/code/resources/app/out/vs/workbench/services/extensions/node/extensionHostProcess.js:95:101516)
+[2022-02-02 00:17:05.418] [renderer1] [error] name must not be falsy: Error: name must not be falsy
+	at Function.validate (/usr/share/code/resources/app/out/vs/workbench/services/extensions/node/extensionHostProcess.js:86:30561)
+	at new t (/usr/share/code/resources/app/out/vs/workbench/services/extensions/node/extensionHostProcess.js:86:30510)
+	at new t (/usr/share/code/resources/app/out/vs/workbench/services/extensions/node/extensionHostProcess.js:86:17301)
+	at B (/home/giovana/.vscode/extensions/ms-python.python-2021.12.1559732655/out/client/extension.js:67:215318)
+	at Array.map (<anonymous>)
+	at Object.asDocumentSymbols (/home/giovana/.vscode/extensions/ms-python.python-2021.12.1559732655/out/client/extension.js:67:220656)
+	at /home/giovana/.vscode/extensions/ms-python.python-2021.12.1559732655/out/client/extension.js:24:124585
+	at async s.provideDocumentSymbols (/usr/share/code/resources/app/out/vs/workbench/services/extensions/node/extensionHostProcess.js:95:87704)
+[2022-02-02 00:17:06.656] [renderer1] [error] Cannot read property 'length' of undefined: TypeError: Cannot read property 'length' of undefined
+	at /home/giovana/.vscode/extensions/ms-python.python-2021.12.1559732655/out/client/extension.js:67:257359
+	at p (/home/giovana/.vscode/extensions/ms-python.python-2021.12.1559732655/out/client/extension.js:67:262355)
+	at async z.provideCompletionItems (/usr/share/code/resources/app/out/vs/workbench/services/extensions/node/extensionHostProcess.js:95:101516)
+[2022-02-02 00:17:07.273] [renderer1] [error] name must not be falsy: Error: name must not be falsy
+	at Function.validate (/usr/share/code/resources/app/out/vs/workbench/services/extensions/node/extensionHostProcess.js:86:30561)
+	at new t (/usr/share/code/resources/app/out/vs/workbench/services/extensions/node/extensionHostProcess.js:86:30510)
+	at new t (/usr/share/code/resources/app/out/vs/workbench/services/extensions/node/extensionHostProcess.js:86:17301)
+	at B (/home/giovana/.vscode/extensions/ms-python.python-2021.12.1559732655/out/client/extension.js:67:215318)
+	at Array.map (<anonymous>)
+	at Object.asDocumentSymbols (/home/giovana/.vscode/extensions/ms-python.python-2021.12.1559732655/out/client/extension.js:67:220656)
+	at /home/giovana/.vscode/extensions/ms-python.python-2021.12.1559732655/out/client/extension.js:24:124585
+	at async s.provideDocumentSymbols (/usr/share/code/resources/app/out/vs/workbench/services/extensions/node/extensionHostProcess.js:95:87704)
+[2022-02-02 00:17:09.179] [renderer1] [error] name must not be falsy: Error: name must not be falsy
+	at Function.validate (/usr/share/code/resources/app/out/vs/workbench/services/extensions/node/extensionHostProcess.js:86:30561)
+	at new t (/usr/share/code/resources/app/out/vs/workbench/services/extensions/node/extensionHostProcess.js:86:30510)
+	at new t (/usr/share/code/resources/app/out/vs/workbench/services/extensions/node/extensionHostProcess.js:86:17301)
+	at B (/home/giovana/.vscode/extensions/ms-python.python-2021.12.1559732655/out/client/extension.js:67:215318)
+	at Array.map (<anonymous>)
+	at Object.asDocumentSymbols (/home/giovana/.vscode/extensions/ms-python.python-2021.12.1559732655/out/client/extension.js:67:220656)
+	at /home/giovana/.vscode/extensions/ms-python.python-2021.12.1559732655/out/client/extension.js:24:124585
+	at async s.provideDocumentSymbols (/usr/share/code/resources/app/out/vs/workbench/services/extensions/node/extensionHostProcess.js:95:87704)
+[2022-02-02 00:17:10.789] [renderer1] [error] name must not be falsy: Error: name must not be falsy
+	at Function.validate (/usr/share/code/resources/app/out/vs/workbench/services/extensions/node/extensionHostProcess.js:86:30561)
+	at new t (/usr/share/code/resources/app/out/vs/workbench/services/extensions/node/extensionHostProcess.js:86:30510)
+	at new t (/usr/share/code/resources/app/out/vs/workbench/services/extensions/node/extensionHostProcess.js:86:17301)
+	at B (/home/giovana/.vscode/extensions/ms-python.python-2021.12.1559732655/out/client/extension.js:67:215318)
+	at Array.map (<anonymous>)
+	at Object.asDocumentSymbols (/home/giovana/.vscode/extensions/ms-python.python-2021.12.1559732655/out/client/extension.js:67:220656)
+	at /home/giovana/.vscode/extensions/ms-python.python-2021.12.1559732655/out/client/extension.js:24:124585
+	at async s.provideDocumentSymbols (/usr/share/code/resources/app/out/vs/workbench/services/extensions/node/extensionHostProcess.js:95:87704)
+[2022-02-02 00:17:12.739] [renderer1] [error] name must not be falsy: Error: name must not be falsy
+	at Function.validate (/usr/share/code/resources/app/out/vs/workbench/services/extensions/node/extensionHostProcess.js:86:30561)
+	at new t (/usr/share/code/resources/app/out/vs/workbench/services/extensions/node/extensionHostProcess.js:86:30510)
+	at new t (/usr/share/code/resources/app/out/vs/workbench/services/extensions/node/extensionHostProcess.js:86:17301)
+	at B (/home/giovana/.vscode/extensions/ms-python.python-2021.12.1559732655/out/client/extension.js:67:215318)
+	at Array.map (<anonymous>)
+	at Object.asDocumentSymbols (/home/giovana/.vscode/extensions/ms-python.python-2021.12.1559732655/out/client/extension.js:67:220656)
+	at /home/giovana/.vscode/extensions/ms-python.python-2021.12.1559732655/out/client/extension.js:24:124585
+	at async s.provideDocumentSymbols (/usr/share/code/resources/app/out/vs/workbench/services/extensions/node/extensionHostProcess.js:95:87704)
+[2022-02-02 00:26:58.634] [renderer1] [error] Cannot read property 'length' of undefined: TypeError: Cannot read property 'length' of undefined
+	at /home/giovana/.vscode/extensions/ms-python.python-2021.12.1559732655/out/client/extension.js:67:257359
+	at p (/home/giovana/.vscode/extensions/ms-python.python-2021.12.1559732655/out/client/extension.js:67:262355)
+	at async z.provideCompletionItems (/usr/share/code/resources/app/out/vs/workbench/services/extensions/node/extensionHostProcess.js:95:101516)
+[2022-02-02 00:32:28.454] [renderer1] [error] Cannot read property 'length' of undefined: TypeError: Cannot read property 'length' of undefined
+	at /home/giovana/.vscode/extensions/ms-python.python-2021.12.1559732655/out/client/extension.js:67:257359
+	at p (/home/giovana/.vscode/extensions/ms-python.python-2021.12.1559732655/out/client/extension.js:67:262355)
+	at async z.provideCompletionItems (/usr/share/code/resources/app/out/vs/workbench/services/extensions/node/extensionHostProcess.js:95:101516)
+[2022-02-02 00:34:06.397] [renderer1] [error] [File Watcher (parcel)] restarting watcher after error: terminated by itself with code undefined, signal: SIGSEGV
+[2022-02-02 00:42:03.552] [renderer1] [error] Cannot read property 'length' of undefined: TypeError: Cannot read property 'length' of undefined
+	at /home/giovana/.vscode/extensions/ms-python.python-2021.12.1559732655/out/client/extension.js:67:257359
+	at p (/home/giovana/.vscode/extensions/ms-python.python-2021.12.1559732655/out/client/extension.js:67:262355)
+	at async z.provideCompletionItems (/usr/share/code/resources/app/out/vs/workbench/services/extensions/node/extensionHostProcess.js:95:101516)
+[2022-02-02 00:50:22.720] [renderer1] [error] Cannot read property 'length' of undefined: TypeError: Cannot read property 'length' of undefined
+	at /home/giovana/.vscode/extensions/ms-python.python-2021.12.1559732655/out/client/extension.js:67:257359
+	at p (/home/giovana/.vscode/extensions/ms-python.python-2021.12.1559732655/out/client/extension.js:67:262355)
+	at async z.provideCompletionItems (/usr/share/code/resources/app/out/vs/workbench/services/extensions/node/extensionHostProcess.js:95:101516)
+[2022-02-02 00:55:07.122] [renderer1] [error] name must not be falsy: Error: name must not be falsy
+	at Function.validate (/usr/share/code/resources/app/out/vs/workbench/services/extensions/node/extensionHostProcess.js:86:30561)
+	at new t (/usr/share/code/resources/app/out/vs/workbench/services/extensions/node/extensionHostProcess.js:86:30510)
+	at new t (/usr/share/code/resources/app/out/vs/workbench/services/extensions/node/extensionHostProcess.js:86:17301)
+	at B (/home/giovana/.vscode/extensions/ms-python.python-2021.12.1559732655/out/client/extension.js:67:215318)
+	at Array.map (<anonymous>)
+	at Object.asDocumentSymbols (/home/giovana/.vscode/extensions/ms-python.python-2021.12.1559732655/out/client/extension.js:67:220656)
+	at /home/giovana/.vscode/extensions/ms-python.python-2021.12.1559732655/out/client/extension.js:24:124585
+	at async s.provideDocumentSymbols (/usr/share/code/resources/app/out/vs/workbench/services/extensions/node/extensionHostProcess.js:95:87704)
+[2022-02-02 00:55:27.718] [renderer1] [error] Cannot read property 'length' of undefined: TypeError: Cannot read property 'length' of undefined
+	at /home/giovana/.vscode/extensions/ms-python.python-2021.12.1559732655/out/client/extension.js:67:257359
+	at p (/home/giovana/.vscode/extensions/ms-python.python-2021.12.1559732655/out/client/extension.js:67:262355)
+	at async z.provideCompletionItems (/usr/share/code/resources/app/out/vs/workbench/services/extensions/node/extensionHostProcess.js:95:101516)
+[2022-02-02 00:55:30.156] [renderer1] [error] name must not be falsy: Error: name must not be falsy
+	at Function.validate (/usr/share/code/resources/app/out/vs/workbench/services/extensions/node/extensionHostProcess.js:86:30561)
+	at new t (/usr/share/code/resources/app/out/vs/workbench/services/extensions/node/extensionHostProcess.js:86:30510)
+	at new t (/usr/share/code/resources/app/out/vs/workbench/services/extensions/node/extensionHostProcess.js:86:17301)
+	at B (/home/giovana/.vscode/extensions/ms-python.python-2021.12.1559732655/out/client/extension.js:67:215318)
+	at B (/home/giovana/.vscode/extensions/ms-python.python-2021.12.1559732655/out/client/extension.js:67:215493)
+	at Array.map (<anonymous>)
+	at Object.asDocumentSymbols (/home/giovana/.vscode/extensions/ms-python.python-2021.12.1559732655/out/client/extension.js:67:220656)
+	at /home/giovana/.vscode/extensions/ms-python.python-2021.12.1559732655/out/client/extension.js:24:124585
+	at async s.provideDocumentSymbols (/usr/share/code/resources/app/out/vs/workbench/services/extensions/node/extensionHostProcess.js:95:87704)
+[2022-02-02 00:56:28.163] [renderer1] [error] name must not be falsy: Error: name must not be falsy
+	at Function.validate (/usr/share/code/resources/app/out/vs/workbench/services/extensions/node/extensionHostProcess.js:86:30561)
+	at new t (/usr/share/code/resources/app/out/vs/workbench/services/extensions/node/extensionHostProcess.js:86:30510)
+	at new t (/usr/share/code/resources/app/out/vs/workbench/services/extensions/node/extensionHostProcess.js:86:17301)
+	at B (/home/giovana/.vscode/extensions/ms-python.python-2021.12.1559732655/out/client/extension.js:67:215318)
+	at Array.map (<anonymous>)
+	at Object.asDocumentSymbols (/home/giovana/.vscode/extensions/ms-python.python-2021.12.1559732655/out/client/extension.js:67:220656)
+	at /home/giovana/.vscode/extensions/ms-python.python-2021.12.1559732655/out/client/extension.js:24:124585
+	at async s.provideDocumentSymbols (/usr/share/code/resources/app/out/vs/workbench/services/extensions/node/extensionHostProcess.js:95:87704)
+[2022-02-02 00:56:57.432] [renderer1] [error] name must not be falsy: Error: name must not be falsy
+	at Function.validate (/usr/share/code/resources/app/out/vs/workbench/services/extensions/node/extensionHostProcess.js:86:30561)
+	at new t (/usr/share/code/resources/app/out/vs/workbench/services/extensions/node/extensionHostProcess.js:86:30510)
+	at new t (/usr/share/code/resources/app/out/vs/workbench/services/extensions/node/extensionHostProcess.js:86:17301)
+	at B (/home/giovana/.vscode/extensions/ms-python.python-2021.12.1559732655/out/client/extension.js:67:215318)
+	at Array.map (<anonymous>)
+	at Object.asDocumentSymbols (/home/giovana/.vscode/extensions/ms-python.python-2021.12.1559732655/out/client/extension.js:67:220656)
+	at /home/giovana/.vscode/extensions/ms-python.python-2021.12.1559732655/out/client/extension.js:24:124585
+	at async s.provideDocumentSymbols (/usr/share/code/resources/app/out/vs/workbench/services/extensions/node/extensionHostProcess.js:95:87704)
+[2022-02-02 00:59:45.054] [renderer1] [error] [Extension Host] Canceled: Canceled
+	at S.makeCancelError (/home/giovana/.vscode/extensions/ms-python.python-2021.12.1559732655/out/client/extension.js:24:159824)
+	at S.handleFailedRequest (/home/giovana/.vscode/extensions/ms-python.python-2021.12.1559732655/out/client/extension.js:24:159675)
+	at /home/giovana/.vscode/extensions/ms-python.python-2021.12.1559732655/out/client/extension.js:24:127536
+	at async T.provideCodeActions (/usr/share/code/resources/app/out/vs/workbench/services/extensions/node/extensionHostProcess.js:95:93216)
+[2022-02-02 01:01:09.893] [renderer1] [error] Cannot read property 'length' of undefined: TypeError: Cannot read property 'length' of undefined
+	at /home/giovana/.vscode/extensions/ms-python.python-2021.12.1559732655/out/client/extension.js:67:257359
+	at p (/home/giovana/.vscode/extensions/ms-python.python-2021.12.1559732655/out/client/extension.js:67:262355)
+	at async z.provideCompletionItems (/usr/share/code/resources/app/out/vs/workbench/services/extensions/node/extensionHostProcess.js:95:101516)
+[2022-02-02 01:20:44.385] [renderer1] [error] Cannot read property 'length' of undefined: TypeError: Cannot read property 'length' of undefined
+	at /home/giovana/.vscode/extensions/ms-python.python-2021.12.1559732655/out/client/extension.js:67:257359
+	at p (/home/giovana/.vscode/extensions/ms-python.python-2021.12.1559732655/out/client/extension.js:67:262355)
+	at async z.provideCompletionItems (/usr/share/code/resources/app/out/vs/workbench/services/extensions/node/extensionHostProcess.js:95:101516)
+[2022-02-02 09:19:07.397] [renderer1] [error] Cannot read property 'length' of undefined: TypeError: Cannot read property 'length' of undefined
+	at /home/giovana/.vscode/extensions/ms-python.python-2021.12.1559732655/out/client/extension.js:67:257359
+	at p (/home/giovana/.vscode/extensions/ms-python.python-2021.12.1559732655/out/client/extension.js:67:262355)
+	at async z.provideCompletionItems (/usr/share/code/resources/app/out/vs/workbench/services/extensions/node/extensionHostProcess.js:95:101516)
+[2022-02-02 09:28:07.493] [renderer1] [error] Cannot read property 'length' of undefined: TypeError: Cannot read property 'length' of undefined
+	at /home/giovana/.vscode/extensions/ms-python.python-2021.12.1559732655/out/client/extension.js:67:257359
+	at p (/home/giovana/.vscode/extensions/ms-python.python-2021.12.1559732655/out/client/extension.js:67:262355)
+	at async z.provideCompletionItems (/usr/share/code/resources/app/out/vs/workbench/services/extensions/node/extensionHostProcess.js:95:101516)
+[2022-02-02 09:46:05.271] [renderer1] [error] Cannot read property 'length' of undefined: TypeError: Cannot read property 'length' of undefined
+	at /home/giovana/.vscode/extensions/ms-python.python-2021.12.1559732655/out/client/extension.js:67:257359
+	at p (/home/giovana/.vscode/extensions/ms-python.python-2021.12.1559732655/out/client/extension.js:67:262355)
+	at async z.provideCompletionItems (/usr/share/code/resources/app/out/vs/workbench/services/extensions/node/extensionHostProcess.js:95:101516)
+[2022-02-02 10:01:04.152] [renderer1] [error] Cannot read property 'length' of undefined: TypeError: Cannot read property 'length' of undefined
+	at /home/giovana/.vscode/extensions/ms-python.python-2021.12.1559732655/out/client/extension.js:67:257359
+	at p (/home/giovana/.vscode/extensions/ms-python.python-2021.12.1559732655/out/client/extension.js:67:262355)
+	at async z.provideCompletionItems (/usr/share/code/resources/app/out/vs/workbench/services/extensions/node/extensionHostProcess.js:95:101516)
+[2022-02-02 10:11:20.677] [renderer1] [error] Cannot read property 'length' of undefined: TypeError: Cannot read property 'length' of undefined
+	at /home/giovana/.vscode/extensions/ms-python.python-2021.12.1559732655/out/client/extension.js:67:257359
+	at p (/home/giovana/.vscode/extensions/ms-python.python-2021.12.1559732655/out/client/extension.js:67:262355)
+	at async z.provideCompletionItems (/usr/share/code/resources/app/out/vs/workbench/services/extensions/node/extensionHostProcess.js:95:101516)
+[2022-02-02 10:17:38.598] [renderer1] [error] Cannot read property 'length' of undefined: TypeError: Cannot read property 'length' of undefined
+	at /home/giovana/.vscode/extensions/ms-python.python-2021.12.1559732655/out/client/extension.js:67:257359
+	at p (/home/giovana/.vscode/extensions/ms-python.python-2021.12.1559732655/out/client/extension.js:67:262355)
+	at async z.provideCompletionItems (/usr/share/code/resources/app/out/vs/workbench/services/extensions/node/extensionHostProcess.js:95:101516)

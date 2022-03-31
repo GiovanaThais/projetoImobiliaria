@@ -1,0 +1,3 @@
+[2022-02-02 22:34:04.896] [renderer4] [error] [Extension Host] (node:38564) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+(Use `code --trace-deprecation ...` to show where the warning was created)
+[2022-02-02 22:34:08.793] [renderer4] [error] [Extension Host] validating /home/giovana/.config/Code/User/globalStorage/tabnine.tabnine-vscode/binaries/4.0.60/x86_64-unknown-linux-musl/TabNine timeout

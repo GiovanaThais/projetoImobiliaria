@@ -1,0 +1,15 @@
+[2022-02-02 22:52:26.931] [renderer6] [error] [Extension Host] (node:53030) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+(Use `code --trace-deprecation ...` to show where the warning was created)
+[2022-02-02 22:52:30.058] [renderer6] [error] [Extension Host] validating /home/giovana/.config/Code/User/globalStorage/tabnine.tabnine-vscode/binaries/4.0.60/x86_64-unknown-linux-musl/TabNine timeout
+[2022-02-02 23:57:52.827] [renderer6] [error] Cannot read property 'length' of undefined: TypeError: Cannot read property 'length' of undefined
+	at /home/giovana/.vscode/extensions/ms-python.python-2021.12.1559732655/out/client/extension.js:67:257359
+	at p (/home/giovana/.vscode/extensions/ms-python.python-2021.12.1559732655/out/client/extension.js:67:262355)
+	at async z.provideCompletionItems (/usr/share/code/resources/app/out/vs/workbench/services/extensions/node/extensionHostProcess.js:95:101516)
+[2022-02-03 00:03:06.601] [renderer6] [error] Cannot read property 'length' of undefined: TypeError: Cannot read property 'length' of undefined
+	at /home/giovana/.vscode/extensions/ms-python.python-2021.12.1559732655/out/client/extension.js:67:257359
+	at p (/home/giovana/.vscode/extensions/ms-python.python-2021.12.1559732655/out/client/extension.js:67:262355)
+	at async z.provideCompletionItems (/usr/share/code/resources/app/out/vs/workbench/services/extensions/node/extensionHostProcess.js:95:101516)
+[2022-02-03 00:14:58.192] [renderer6] [error] Cannot read property 'length' of undefined: TypeError: Cannot read property 'length' of undefined
+	at /home/giovana/.vscode/extensions/ms-python.python-2021.12.1559732655/out/client/extension.js:67:257359
+	at p (/home/giovana/.vscode/extensions/ms-python.python-2021.12.1559732655/out/client/extension.js:67:262355)
+	at async z.provideCompletionItems (/usr/share/code/resources/app/out/vs/workbench/services/extensions/node/extensionHostProcess.js:95:101516)

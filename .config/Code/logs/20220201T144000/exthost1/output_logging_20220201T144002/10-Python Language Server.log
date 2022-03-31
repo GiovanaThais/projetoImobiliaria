@@ -1,0 +1,65 @@
+[Info  - 2:40:14 PM] (11652) Pylance language server 2022.1.5 (pyright 8d096292) starting
+[Info  - 2:40:14 PM] (11652) Server root directory: /home/giovana/.vscode/extensions/ms-python.vscode-pylance-2022.1.5/dist
+[Info  - 2:40:14 PM] (11652) No configuration file found.
+[Info  - 2:40:14 PM] (11652) No pyproject.toml file found.
+[Info  - 2:40:14 PM] (11652) Setting pythonPath for service "gerenciamento": "/bin/python3"
+[Warn  - 2:40:14 PM] (11652) stubPath /home/giovana/gerenciamento/typings is not a valid directory.
+[Info  - 2:40:14 PM] (11652) Assuming Python version 3.8
+[Info  - 2:40:14 PM] (11652) Assuming Python platform Linux
+[Warn  - 2:40:15 PM] (11652) Exception received when installing file system watcher: TypeError [ERR_FEATURE_UNAVAILABLE_ON_PLATFORM]: The feature watch recursively is unavailable on the current platform, which is being used to run Node.js
+[Warn  - 2:40:15 PM] (11652) Exception received when installing file system watcher: TypeError [ERR_FEATURE_UNAVAILABLE_ON_PLATFORM]: The feature watch recursively is unavailable on the current platform, which is being used to run Node.js
+[Warn  - 2:40:15 PM] (11652) Exception received when installing file system watcher: TypeError [ERR_FEATURE_UNAVAILABLE_ON_PLATFORM]: The feature watch recursively is unavailable on the current platform, which is being used to run Node.js
+[Warn  - 2:40:15 PM] (11652) Exception received when installing file system watcher: TypeError [ERR_FEATURE_UNAVAILABLE_ON_PLATFORM]: The feature watch recursively is unavailable on the current platform, which is being used to run Node.js
+[Info  - 2:40:15 PM] (11652) Searching for source files
+[Info  - 2:40:15 PM] (11652) Auto-excluding /home/giovana/gerenciamento/venv
+[Info  - 2:40:15 PM] (11652) Found 13 source files
+[Info  - 2:40:15 PM] (11652) Background analysis(1) root directory: /home/giovana/.vscode/extensions/ms-python.vscode-pylance-2022.1.5/dist
+[Info  - 2:40:15 PM] (11652) Background analysis(1) started
+[Info  - 2:40:15 PM] (11652) Indexer background runner(2) root directory: /home/giovana/.vscode/extensions/ms-python.vscode-pylance-2022.1.5/dist (index)
+[Info  - 2:40:15 PM] (11652) Indexing(2) started
+[Info  - 2:40:16 PM] (11652) Indexer done(2). indexed 444 files
+[Info  - 2:51:24 PM] (11652) Searching for source files
+[Info  - 2:51:24 PM] (11652) Auto-excluding /home/giovana/gerenciamento/venv
+[Info  - 2:51:24 PM] (11652) Found 13 source files
+[Info  - 2:53:33 PM] (11652) Searching for source files
+[Info  - 2:53:33 PM] (11652) Auto-excluding /home/giovana/gerenciamento/venv
+[Info  - 2:53:33 PM] (11652) Found 13 source files
+[Info  - 4:05:37 PM] (11652) Searching for source files
+[Info  - 4:05:37 PM] (11652) Auto-excluding /home/giovana/gerenciamento/venv
+[Info  - 4:05:37 PM] (11652) Found 13 source files
+[Info  - 4:57:17 PM] (11652) Searching for source files
+[Info  - 4:57:17 PM] (11652) Auto-excluding /home/giovana/gerenciamento/venv
+[Info  - 4:57:17 PM] (11652) Found 13 source files
+[Info  - 6:20:21 PM] (11652) Searching for source files
+[Info  - 6:20:21 PM] (11652) Auto-excluding /home/giovana/gerenciamento/venv
+[Info  - 6:20:21 PM] (11652) Found 13 source files
+[Info  - 6:20:29 PM] (11652) Searching for source files
+[Info  - 6:20:29 PM] (11652) Auto-excluding /home/giovana/gerenciamento/venv
+[Info  - 6:20:29 PM] (11652) Found 13 source files
+[Info  - 6:20:44 PM] (11652) Searching for source files
+[Info  - 6:20:44 PM] (11652) Auto-excluding /home/giovana/gerenciamento/venv
+[Info  - 6:20:44 PM] (11652) Found 14 source files
+[Info  - 12:53:05 AM] (11652) Searching for source files
+[Info  - 12:53:05 AM] (11652) Auto-excluding /home/giovana/gerenciamento/venv
+[Info  - 12:53:05 AM] (11652) Found 16 source files
+[Info  - 12:54:17 AM] (11652) Searching for source files
+[Info  - 12:54:17 AM] (11652) Auto-excluding /home/giovana/gerenciamento/venv
+[Info  - 12:54:17 AM] (11652) Found 17 source files
+[Info  - 10:02:18 AM] (11652) Searching for source files
+[Info  - 10:02:18 AM] (11652) Auto-excluding /home/giovana/gerenciamento/venv
+[Info  - 10:02:18 AM] (11652) Found 18 source files
+[Info  - 10:04:01 AM] (11652) Searching for source files
+[Info  - 10:04:01 AM] (11652) Auto-excluding /home/giovana/gerenciamento/venv
+[Info  - 10:04:01 AM] (11652) Found 19 source files
+[Info  - 10:05:59 AM] (11652) Searching for source files
+[Info  - 10:05:59 AM] (11652) Auto-excluding /home/giovana/gerenciamento/venv
+[Info  - 10:05:59 AM] (11652) Found 20 source files
+[Info  - 10:08:33 AM] (11652) Searching for source files
+[Info  - 10:08:33 AM] (11652) Auto-excluding /home/giovana/gerenciamento/venv
+[Info  - 10:08:33 AM] (11652) Found 21 source files
+[Info  - 10:11:38 AM] (11652) Searching for source files
+[Info  - 10:11:38 AM] (11652) Auto-excluding /home/giovana/gerenciamento/venv
+[Info  - 10:11:38 AM] (11652) Found 22 source files
+[Info  - 10:18:19 AM] (11652) Searching for source files
+[Info  - 10:18:19 AM] (11652) Auto-excluding /home/giovana/gerenciamento/venv
+[Info  - 10:18:19 AM] (11652) Found 23 source files

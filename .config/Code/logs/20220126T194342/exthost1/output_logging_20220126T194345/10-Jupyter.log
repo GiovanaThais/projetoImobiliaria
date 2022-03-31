@@ -1,0 +1,24 @@
+Jupyter Extension Version: 2021.11.1001550889.
+Python Extension Verison: 2021.12.1559732655.
+Info 20:03:31: Experimentation service retrieved: [object Object]
+Info 20:03:31: ZMQ install verified.
+Error 20:03:32: Jupyter Extension (Error in Failed to update settings.json, method:fixSettingsFile): [EntryNotFound (FileSystemError): Unable to read file '/home/giovana/.config/Code/User/settings.json' (Error: Unable to resolve nonexistent file '/home/giovana/.config/Code/User/settings.json')
+	at Function._handleError (/usr/share/code/resources/app/out/vs/workbench/services/extensions/node/extensionHostProcess.js:95:84547)
+	at Object.readFile (/usr/share/code/resources/app/out/vs/workbench/services/extensions/node/extensionHostProcess.js:95:83461)
+	at processTicksAndRejections (internal/process/task_queues.js:93:5)
+	at async m.readFile (/home/giovana/.vscode/extensions/ms-toolsai.jupyter-2021.11.1001550889/out/client/extension.js:104:380788)
+	at async g.fixSettingsFile (/home/giovana/.vscode/extensions/ms-toolsai.jupyter-2021.11.1001550889/out/client/extension.js:66:537959)
+	at async Promise.all (index 0)
+	at async g.updateSettings (/home/giovana/.vscode/extensions/ms-toolsai.jupyter-2021.11.1001550889/out/client/extension.js:66:539709)] {
+  code: 'FileNotFound'
+}
+Info 20:03:32: Experiment status for python is {"enabled":true,"optInto":[],"optOutFrom":[]}
+Info 20:03:32: Process Execution: > /bin/python3 -m pip list
+> /bin/python3 -m pip list
+Info 15:28:40: Shutting down notebooks for 0a451565-4dfc-48b9-bf12-400aa29e527c
+Info 15:28:40: Disposing HostJupyterExecution 6f5afbec-7b9e-44a4-a1ce-4913c7a4f9bb
+Info 15:28:40: Disposing super HostJupyterExecution 6f5afbec-7b9e-44a4-a1ce-4913c7a4f9bb
+Info 15:28:40: Disposing HostJupyterExecution 6f5afbec-7b9e-44a4-a1ce-4913c7a4f9bb
+Info 15:28:40: Finished disposing HostJupyterExecution  6f5afbec-7b9e-44a4-a1ce-4913c7a4f9bb
+Info 15:28:40: Cleaning up server cache 6f5afbec-7b9e-44a4-a1ce-4913c7a4f9bb
+Info 15:28:40: Finished disposing HostJupyterExecution  6f5afbec-7b9e-44a4-a1ce-4913c7a4f9bb

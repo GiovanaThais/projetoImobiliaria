@@ -1,0 +1,15 @@
+[Info  - 2:40:03 PM] (11567) Pylance language server 2022.1.5 (pyright 8d096292) starting
+[Info  - 2:40:03 PM] (11567) Server root directory: /home/giovana/.vscode/extensions/ms-python.vscode-pylance-2022.1.5/dist
+[Info  - 2:40:03 PM] (11567) No configuration file found.
+[Info  - 2:40:03 PM] (11567) No pyproject.toml file found.
+[Info  - 2:40:03 PM] (11567) Setting pythonPath for service "gerenciamento": "/bin/python3"
+[Warn  - 2:40:03 PM] (11567) stubPath /home/giovana/gerenciamento/typings is not a valid directory.
+[Info  - 2:40:03 PM] (11567) Assuming Python platform Linux
+[Info  - 2:40:03 PM] (11567) Searching for source files
+[Info  - 2:40:03 PM] (11567) Auto-excluding /home/giovana/gerenciamento/venv
+[Info  - 2:40:03 PM] (11567) Found 13 source files
+[Info  - 2:40:03 PM] (11567) Background analysis(1) root directory: /home/giovana/.vscode/extensions/ms-python.vscode-pylance-2022.1.5/dist
+[Info  - 2:40:03 PM] (11567) Background analysis(1) started
+[Info  - 2:40:03 PM] (11567) Indexer background runner(2) root directory: /home/giovana/.vscode/extensions/ms-python.vscode-pylance-2022.1.5/dist (index)
+[Info  - 2:40:03 PM] (11567) Indexing(2) started
+[Info  - 2:40:04 PM] (11567) Indexer done(2). indexed 421 files
