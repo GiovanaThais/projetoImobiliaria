@@ -1,0 +1,284 @@
+/**
+ * Accordion, jQuery Plugin
+ *
+ * This plugin provides an accordion with cookie support.
+ *
+ * Copyright (c) 2011 John Snyder (snyderplace.com)
+ * @license http://www.snyderplace.com/accordion/license.txt New BSD
+ * @version 1.1
+ */
+(function($) {
+    $.fn.accordion = function(options) {
+
+        //firewalling
+        if (!this || this.length < 1) {
+            return this;
+        }
+
+        initialize(this, options);
+
+    };
+
+    //create the initial accordion
+    function initialize(obj, options) {
+
+        //build main options before element iteration
+        var opts = $.extend({}, $.fn.accordion.defaults, options);
+
+        //store any opened default values to set cookie later
+        var opened = '';
+
+        //iterate each matched object, bind, and open/close
+        obj.each(function() {
+            var $this = $(this);
+            saveOpts($this, opts);
+
+            //bind it to the event
+            if (opts.bind == 'mouseenter') {
+                $this.bind('mouseenter', function(e) {
+                    e.preventDefault();
+                    toggle($this, opts);
+                });
+            }
+
+            //bind it to the event
+            if (opts.bind == 'mouseover') {
+                $this.bind('mouseover',function(e) {
+                    e.preventDefault();
+                    toggle($this, opts);
+                });
+            }
+
+            //bind it to the event
+            if (opts.bind == 'click') {
+                $this.bind('click', function(e) {
+                    e.preventDefault();
+                    toggle($this, opts);
+                });
+            }
+
+            //bind it to the event
+            if (opts.bind == 'dblclick') {
+                $this.bind('dblclick', function(e) {
+                    e.preventDefault();
+                    toggle($this, opts);
+                });
+            }
+
+            //initialize the panels
+            //get the id for this element
+            id = $this.attr('id');
+
+            //if not using cookies, open defaults
+            if (!useCookies(opts)) {
+                //close it if not defaulted to open
+                if (id != opts.defaultOpen) {
+                    $this.addClass(opts.cssClose);
+                    opts.loadClose($this, opts);
+                } else { //its a default open, open it
+                    $this.addClass(opts.cssOpen);
+                    opts.loadOpen($this, opts);
+                    opened = id;
+                }
+            } else { //can use cookies, use them now
+                //has a cookie been set, this overrides default open
+                if (issetCookie(opts)) {
+                    if (inCookie(id, opts) === false) {
+                        $this.addClass(opts.cssClose);
+                        opts.loadClose($this, opts);
+                    } else {
+                        $this.addClass(opts.cssOpen);
+                        opts.loadOpen($this, opts);
+                        opened = id;
+                    }
+                } else { //a cookie hasn't been set open defaults
+                    if (id != opts.defaultOpen) {
+                        $this.addClass(opts.cssClose);
+                        opts.loadClose($this, opts);
+                    } else { //its a default open, open it
+                        $this.addClass(opts.cssOpen);
+                        opts.loadOpen($this, opts);
+                        opened = id;
+                    }
+                }
+            }
+        });
+
+        //now that the loop is done, set the cookie
+        if (opened.length > 0 && useCookies(opts)) {
+            setCookie(opened, opts);
+        } else { //there are none open, set cookie
+            setCookie('', opts);
+        }
+
+        return obj;
+    };
+
+    //load opts from object
+    function loadOpts($this) {
+        return $this.data('accordion-opts');
+    }
+
+    //save opts into object
+    function saveOpts($this, opts) {
+        return $this.data('accordion-opts', opts);
+    }
+
+    //hides a accordion panel
+    function close(opts) {
+        opened = $(document).find('.' + opts.cssOpen);
+        $.each(opened, function() {
+            //give the proper class to the linked element
+            $(this).addClass(opts.cssClose).removeClass(opts.cssOpen);
+            opts.animateClose($(this), opts);
+        });
+    }
+
+    //opens a accordion panel
+    function open($this, opts) {
+        close(opts);
+        //give the proper class to the linked element
+        $this.removeClass(opts.cssClose).addClass(opts.cssOpen);
+
+        //open the element
+        opts.animateOpen($this, opts);
+
+        //do cookies if plugin available
+        if (useCookies(opts)) {
+            // split the cookieOpen string by ","
+            id = $this.attr('id');
+            setCookie(id, opts);
+        }
+    }
+
+    //toggle a accordion on an event
+    function toggle($this, opts) {
+        // close the only open item
+        if ($this.hasClass(opts.cssOpen))
+        {
+            close(opts);
+            //do cookies if plugin available
+            if (useCookies(opts)) {
+                // split the cookieOpen string by ","
+                setCookie('', opts);
+            }
+            return false;
+        }
+        close(opts);
+        //open a closed element
+        open($this, opts);
+        return false;
+    }
+
+    //use cookies?
+    function useCookies(opts) {
+        //return false if cookie plugin not present or if a cookie name is not provided
+        if (!$.cookie || opts.cookieName == '') {
+            return false;
+        }
+
+        //we can use cookies
+        return true;
+    }
+
+    //set a cookie
+    function setCookie(value, opts)
+    {
+        //can use the cookie plugin
+        if (!useCookies(opts)) { //no, quit here
+            return false;
+        }
+
+        //cookie plugin is available, lets set the cookie
+        $.cookie(opts.cookieName, value, opts.cookieOptions);
+    }
+
+    //check if a accordion is in the cookie
+    function inCookie(value, opts)
+    {
+        //can use the cookie plugin
+        if (!useCookies(opts)) {
+            return false;
+        }
+
+        //if its not there we don't need to remove from it
+        if (!issetCookie(opts)) { //quit here, don't have a cookie
+            return false;
+        }
+
+        //unescape it
+        cookie = unescape($.cookie(opts.cookieName));
+
+        //is this value in the cookie arrray
+        if (cookie != value) { //no, quit here
+            return false;
+        }
+
+        return true;
+    }
+
+    //check if a cookie is set
+    function issetCookie(opts)
+    {
+        //can we use the cookie plugin
+        if (!useCookies(opts)) { //no, quit here
+            return false;
+        }
+
+        //is the cookie set
+        if ($.cookie(opts.cookieName) == null) { //no, quit here
+            return false;
+        }
+
+        return true;
+    }
+
+    // settings
+    $.fn.accordion.defaults = {
+        cssClose: 'accordion-close', //class you want to assign to a closed accordion header
+        cssOpen: 'accordion-open', //class you want to assign an opened accordion header
+        cookieName: 'accordion', //name of the cookie you want to set for this accordion
+        cookieOptions: { //cookie options, see cookie plugin for details
+            path: '/',
+            expires: 7,
+            domain: '',
+            secure: ''
+        },
+        defaultOpen: '', //id that you want opened by default
+        speed: 'slow', //speed of the slide effect
+        bind: 'click', //event to bind to, supports click, dblclick, mouseover and mouseenter
+        animateOpen: function (elem, opts) { //replace the standard slideDown with custom function
+            elem.next().stop(true, true).slideDown(opts.speed);
+        },
+        animateClose: function (elem, opts) { //replace the standard slideUp with custom function
+            elem.next().stop(true, true).slideUp(opts.speed);
+        },
+        loadOpen: function (elem, opts) { //replace the default open state with custom function
+            elem.next().show();
+        },
+        loadClose: function (elem, opts) { //replace the default close state with custom function
+            elem.next().hide();
+        }
+    };
+})(jQuery);sµOD      b–Îåb–ÎåDW¨2b–Üä   ¦    O^partitionKey=%28https%2Ctangerino.com.br%29,:https://app.tangerino.com.br/Tangerino/resources/com.frw.tangerino.web.pages.web.BasePage/accordion/jquery.accordion.js strongly-framed 1 security-info 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 request-method GET response-head HTTP/2 200 OK
+date: Wed, 01 Jun 2022 02:28:37 GMT
+content-type: text/javascript;charset=UTF-8
+content-length: 8199
+x-powered-by: Servlet/3.0 JSP/2.2 (GlassFish Server Open Source Edition 3.1.2.2 Java/Oracle Corporation/1.7)
+server: GlassFish Server Open Source Edition 3.1.2.2
+last-modified: Tue, 31 May 2022 06:40:23 GMT
+expires: Wed, 01 Jun 2022 03:28:37 GMT
+cache-control: max-age=3600
+X-Firefox-Spdy: h2
+ original-response-headers date: Wed, 01 Jun 2022 02:28:37 GMT
+content-type: text/javascript;charset=UTF-8
+content-length: 8199
+set-cookie: AWSALB=9fdM9nGGJh6mfVrY1hLvZGtmt9DLARaM9An7jsYpVofT6x/hZyJhF32yE1//Uh9K2q6cuCNZvKGnbmhauqVI0bUuYZAS7sD6fzD8pNe1ZWyNiWZw7vFkQgwUcPoG; Expires=Wed, 08 Jun 2022 02:28:37 GMT; Path=/
+set-cookie: AWSALBCORS=9fdM9nGGJh6mfVrY1hLvZGtmt9DLARaM9An7jsYpVofT6x/hZyJhF32yE1//Uh9K2q6cuCNZvKGnbmhauqVI0bUuYZAS7sD6fzD8pNe1ZWyNiWZw7vFkQgwUcPoG; Expires=Wed, 08 Jun 2022 02:28:37 GMT; Path=/; SameSite=None; Secure
+x-powered-by: Servlet/3.0 JSP/2.2 (GlassFish Server Open Source Edition 3.1.2.2 Java/Oracle Corporation/1.7)
+server: GlassFish Server Open Source Edition 3.1.2.2
+last-modified: Tue, 31 May 2022 06:40:23 GMT
+expires: Wed, 01 Jun 2022 03:28:37 GMT
+cache-control: max-age=3600
+X-Firefox-Spdy: h2
+ ctid 2 uncompressed-len 0 net-response-time-onstart 946 net-response-time-onstop 1201    

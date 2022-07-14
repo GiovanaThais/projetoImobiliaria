@@ -1032,3 +1032,11 @@ source ../venv/ms-gestao-widget/bin/activate
 uvicorn main:app --reload
 git init
 git clone git@github.com:GiovanaThais/pythonFull.git
+cd ...
+cd ..
+git clone git@github.com:GiovanaThais/pythonFull.git
+cd documents
+cd Documents
+git clone git@github.com:GiovanaThais/pythonFull.git
+git clone https://github.com/GiovanaThais/pythonFull.git
+git clone git@github.com:GiovanaThais/pythonFull.git
