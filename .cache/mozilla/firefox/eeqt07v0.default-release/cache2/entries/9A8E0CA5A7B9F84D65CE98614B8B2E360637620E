@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html xmlns:wicket="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<!--  <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+  <link rel="shortcut icon" type="image/ico" href="../../../../web/favicon.ico"/>
+  <title>Bater Ponto</title>
+
+  <script type='text/javascript'>
+    var hostsToForceHttps = ['app.tangerino.com.br', 'app.tangerino-staging.com.br'];
+    if (location.protocol !== 'https:' && hostsToForceHttps.includes(window.location.hostname)) {
+      location.href = 'https:' + window.location.href.substring(window.location.protocol.length);
+    }
+  </script>
+
+  <link href="../../../../web/css/estilo-202205101.css" rel="stylesheet" type="text/css"/>
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Slab"/>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
+  <link rel="stylesheet" href="../../../../web/baterponto/css/fuelux.min.css">
+  <link rel="stylesheet" href="../../../../web/baterponto/fingerprint.css"/>
+
+
+  <script type="text/javascript" src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+  <script type="text/javascript" src="../../../../web/baterponto/js/jquery.min.js"></script>
+  <script type="text/javascript" src="../../../../web/baterponto/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="../../../../web/baterponto/js/spin.min.js"></script>
+  <script type="text/javascript" src="../../../../web/baterponto/js/ladda.min.js"></script>  <script type="text/javascript"
+          src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCSRABISULrme8PUWikrGNqeIuoGnMs8eo&libraries=drawing&v=3.exp"></script>
+  <script type="text/javascript" src="../../../../web/toastr/toastr.min.js"></script>
+  <script type="text/javascript" src="../../../../web/baterponto/fingerprint.js"></script>
+  <script type="text/javascript" src="../../../../web/baterponto/js/fuelux.min.js"></script>
+
+  <style>
+
+    .abaLogin .ativo, .abaLogin .ativo:hover{
+      border-radius: 0 4px 4px 0;
+    }
+
+    .tangerino-top-logo img {
+      width: 310px;
+      height: 100px;
+    }
+
+    /*tooltip Box*/
+    .con-tooltip {
+      right: 20px;
+      top: 12px;
+      position: absolute;
+      transition: all 0.3s ease-in-out;
+      cursor: pointer;
+      color: #FF5F11;
+      font-weight: bold;
+    }
+
+    /*tooltip */
+    .box-tooltip {
+      text-align: center;
+      visibility: hidden;
+      z-index: 1;
+      opacity: .40;
+
+      width: 100%;
+      padding: 0px 20px;
+
+      background: #ff5f11;
+      color: white;
+
+      position: absolute;
+      bottom: 25px;
+      left: 18px;
+
+      border-radius: 9px;
+      font-size: 1.0rem;
+      font-weight: 600;
+
+      transform: translateY(9px);
+      transition: all 0.3s ease-in-out;
+
+      box-shadow: 0 0 3px rgba(56, 54, 54, 0.86);
+    }
+
+    /* tooltip  after*/
+    .box-tooltip::after {
+      content: " ";
+      width: 0;
+      height: 0;
+
+      border-style: solid;
+      border-width: 12px 12.5px 0 12.5px;
+      border-color: #ff5f11 transparent transparent transparent;
+
+      position: absolute;
+      left: 40%;
+
+    }
+
+    .con-tooltip:hover .box-tooltip {
+      visibility: visible;
+      transform: translateY(-5px);
+      opacity: 1;
+      transition: .3s linear;
+      animation: odsoky 1s ease-in-out infinite alternate;
+    }
+
+    .form-signin {
+      max-width: none !important;
+    }
+
+    .form-signin input {
+      border: none !important;
+      border-radius: 6px;
+      background: #f1f1f1;
+      color: #b6b6b4;
+      border-top: none !important;
+    }
+
+    .form-signin .form-control {
+      box-shadow: none;
+      padding: 12px;
+      margin-bottom: 4px !important;
+    }
+
+    .form-signin .form-control:focus {
+      box-shadow: none;
+      border: none;
+    }
+
+    .form-signin button {
+      border-radius: 8px !important;
+      margin-top: 7%;
+    }
+
+    .top-header {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .top-header div.back-button {
+      display: flex;
+      cursor: pointer;
+      color: #ff5f11;
+    }
+
+    .footer-hint {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .footer-hint div {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      width: 70%;
+      color: #0000009e;
+    }
+
+    .footer-hint div h5 {
+      font-family: 'Roboto', sans-serif !important;
+      font-size: 1rem;
+    }
+
+    ::-webkit-input-placeholder { /* Chrome, Safari */
+      text-transform: initial !important;
+    }
+
+    :-moz-placeholder { /* Firefox 18- */
+      text-transform: initial !important;;
+    }
+
+    ::-moz-placeholder { /* Firefox 19+ */
+      text-transform: initial !important;;
+    }
+
+    :-ms-input-placeholder { /* IE */
+      text-transform: initial !important;;
+    }
+
+    .modal {
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 1050;
+      display: none;
+      overflow: hidden;
+      -webkit-overflow-scrolling: touch;
+      outline: 0;
+    }
+
+    .modal-content{
+      position: relative;
+      background-color: #fff;
+      background-clip: padding-box;
+      border: 1px solid rgba(0,0,0,.2);
+      border-radius: 6px;
+      outline: 0;
+      box-shadow: 0 3px 9px rgb(0 0 0 / 50%);
+    }
+
+    .modal-header {
+      padding: 15px;
+      border-bottom: 1px solid #e5e5e5;
+    }
+
+    .modal-title{
+      margin: 0;
+      line-height: 1.42857143;
+      font-size: 18px;
+      font-family: inherit;
+      font-weight: 500;
+      color: inherit;
+    }
+
+    .close{
+      -webkit-appearance: none;
+      padding: 0;
+      cursor: pointer;
+      background: 0 0;
+      border: 0;
+      float: right;
+      font-size: 21px;
+      font-weight: 700;
+      line-height: 1;
+      color: #000;
+      text-shadow: 0 1px 0 #fff;
+      filter: alpha(opacity=20);
+      opacity: .2;
+    }
+
+    .modal-body{
+      position: relative;
+      padding: 15px;
+    }
+
+    .capture-photo-container {
+      width: 100%;
+      position: relative;
+      box-sizing: border-box;
+    }
+
+    .img-thumbnail {
+      display: block;
+      width: 100%;
+      margin-left: auto;
+      margin-right: auto;
+      max-width: 100%;
+      height: auto;
+      padding: 4px;
+      line-height: 1.42857143;
+      background-color: #fff;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      -webkit-transition: all .2s ease-in-out;
+      -o-transition: all .2s ease-in-out;
+      transition: all .2s ease-in-out;
+      vertical-align: baseline;
+      box-sizing: border-box;
+    }
+
+    .modal-footer {
+      padding: 15px;
+      text-align: right;
+      border-top: 1px solid #e5e5e5;
+    }
+
+    .btn-default {
+      color: #333;
+      background-color: #fff;
+      border-color: #ccc;
+    }
+
+    .modal-footer .btn+.btn {
+      margin-bottom: 0;
+      margin-left: 5px;
+    }
+
+    .btn-orange {
+      background: #ff5f11;
+      color: #fff;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 6px 12px;
+      margin-bottom: 0;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 1.42857143;
+      text-align: center;
+      white-space: nowrap;
+      vertical-align: middle;
+      -ms-touch-action: manipulation;
+      touch-action: manipulation;
+      cursor: pointer;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      background-image: none;
+      border: 1px solid transparent;
+      border-radius: 4px;
+    }
+
+    @media (min-width: 1000px){
+      .modal-content {
+        -webkit-box-shadow: 0 5px 15px rgb(0 0 0 / 50%);
+        box-shadow: 0 5px 15px rgb(0 0 0 / 50%);
+      }
+      .modal-dialog {
+        width: 600px;
+        margin: 5px auto;
+      }
+    }
+
+    @media screen and (max-width: 1000px) {
+      .modal-title {
+        font-size: 35px;
+      }
+      .close{
+        font-size: 35px;
+      }
+      .btn{
+        font-size: 30px;
+      }
+    }
+
+    .ladda-button{
+      padding: 0px!important;
+    }
+  </style>
+
+<script type="text/javascript" ><!--/*--><![CDATA[/*><!--*/
+if (window.name=='' || window.name.indexOf('wicket') > -1) { window.name="wicket-wicket-2"; }
+/*-->]]>*/</script>
+
+<script type="text/javascript" src="../../../../resources/org.apache.wicket.markup.html.WicketEventReference/wicket-event.js"></script>
+<script type="text/javascript" src="../../../../resources/org.apache.wicket.ajax.WicketAjaxReference/wicket-ajax.js"></script>
+<script type="text/javascript" ><!--/*--><![CDATA[/*><!--*/
+Wicket.Event.add(window, "load", function(event) { setTimeout("var wcall=wicketAjaxGet('../../../../?wicket:interface=wicket-2:12::IActivePageBehaviorListener:1:4&wicket:ignoreIfNotActive=true',function() { }.bind(this),function() { }.bind(this));", 1000);;});
+/*-->]]>*/</script>
+
+</head>
+<body id="id21b">
+
+<div id="geral" class="login">
+
+  <div class="con-tooltip top" id="id21c" style="    position: unset;    margin: unset;    text-align: center;    font-size: large;    margin-bottom: 20px;">
+    <span class="labelRelogioDataHoraAtual" id="id21d">30/05/2022 13:37:07</span>
+
+    <div class="box-tooltip" id="id21e" style="    right: 120px;    bottom: 481px;    left: unset;    width: unset;">
+      <p style="margin-top: 4%;">Hor√°rio de Bras√≠lia</p>
+    </div>
+
+  </div>
+
+  
+
+  <div id="corpo">
+
+        <fieldset>
+          <form>
+            
+
+            <input type="hidden" class="hiddenCodigoEmpregador" value="4SXXD" name="body:hiddenCodigoEmpregador">
+            <input type="hidden" class="hiddenIsInternalPage" value="true" name="body:hiddenIsInternalPage">
+
+            <div class="account-wall">
+
+              <div class="profile-img" style="display: none;">
+
+                <a id="buttonFinguerPrint" href="#">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </a>
+
+              </div>
+
+              <form class="form-signin" role="form">
+
+              <div>
+                <input id="codigoEmpregador" type="text" maxlength="5" class="form-control uppercaseInputs" placeholder="C√≥digo do Empregador" autocomplete="off" required="required" autofocus="autofocus" style="cursor: not-allowed;    font-size: 16px;    width: 304px;    padding: 12px; "></input>
+              </div>
+
+              <div>
+                <input id="codigoPin" type="password" maxlength="5" class="form-control uppercaseInputs" placeholder="PIN" required="required" autocomplete="off" style="font-size: 16px;    width: 304px;    padding: 12px; "></input>
+              </div>
+
+              <br clear="all"/>
+
+              <button id="registraPonto" class="btnLogin" type="button" style="width: 330px;   height: 44px;    background: #ff5f11">
+                <span class="ladda-label" style="font-weight: bold;">REGISTRAR</span>
+              </button>
+
+              </form>
+            </div>
+          </form>
+        </fieldset>
+    <div class="inputEsqueciSenha" >
+      
+    </div>
+  </div>
+  <div class="footerDica">
+    <i class="fas fa-info-circle" style=""></i>
+    <h5 align="center" class="brownserSuggestion">Para o correto funcionamento do registro de ponto com foto no Tangerino Web, utilize o navegador Google Chrome!</h5>
+  </div>
+
+  
+</div>
+
+<div class="modal fade modal-captura-foto" tabindex="-1" role="dialog" style="display: none">
+  <div class="modal-dialog modal-md" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+          aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Confirma√ß√£o de Registro de Ponto</h4>
+      </div>
+      <div class="modal-body">
+        <div class="capture-photo-container" style="display: none">
+          <video id="camera-stream" class="img-thumbnail center-block" width="300" height="200"></video>
+          <img id="snap">
+          <canvas></canvas>
+          <p id="error-message"></p>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+        <button type="button" id="btn-modal-confirm" class="btn btn-orange">Registra Ponto</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade modal-solicata-autorizacao" tabindex="-1" role="dialog" style="display: none">
+  <div class="modal-dialog modal-md" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+          aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Autoriza√ß√£o de Dispositivo</h4>
+      </div>
+      <div class="modal-body">
+        <form class="form-horizontal modal-solicata-autorizacao-container">
+          <fieldset>
+            <div class="form-group">
+              <div class="col-md-12">
+                Deseja solicitar autoriza√ß√£o para registro de Ponto neste Navegador?
+              </div>
+            </div>
+
+            <!-- Text input-->
+            <div class="form-group" id="device-name-container">
+              <label class="col-md-4 control-label" for="device-name">Nome do Dispositivo:</label>
+              <div class="col-md-8">
+                <input id="device-name" name="device-name" type="text" placeholder="Ex.: Recep√ßao"
+                       class="form-control input-md">
+              </div>
+            </div>
+
+          </fieldset>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+        <button type="button" id="btn-request-authorization" class="btn btn-orange">Solicitar Autoriza√ß√£o
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript" src="../../../../web/js/service/register.js"></script>
+
+</body>
+</html>
+zn∞P_S      bîÚ≥bîÚ∂DTÎ\       ä    O^partitionKey=%28https%2Ctangerino.com.br%29,:https://app.tangerino.com.br/Tangerino/pages/baterPonto/interno/wicket:pageMapName/wicket-2 strongly-framed 1 security-info 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 request-method GET response-head HTTP/2 200 OK
+date: Mon, 30 May 2022 16:37:07 GMT
+content-type: text/html;charset=UTF-8
+x-powered-by: Servlet/3.0 JSP/2.2 (GlassFish Server Open Source Edition 3.1.2.2 Java/Oracle Corporation/1.7)
+server: GlassFish Server Open Source Edition 3.1.2.2
+pragma: no-cache
+cache-control: no-cache, max-age=0, must-revalidate
+content-language: en-US
+X-Firefox-Spdy: h2
+ original-response-headers date: Mon, 30 May 2022 16:37:07 GMT
+content-type: text/html;charset=UTF-8
+set-cookie: AWSALB=GDX/Gv0QCHRmFIaCIDR3aNjWfffAKUw6/1SyAY/b5HN4mzt4DmJxDi+zW08VPD/sNFpD1Ypj8zACd0NY/c0lvRlXE9eTxj//4X9NtDdKVcf8LRtGklrUPpJJ3G2M; Expires=Mon, 06 Jun 2022 16:37:07 GMT; Path=/
+set-cookie: AWSALBCORS=GDX/Gv0QCHRmFIaCIDR3aNjWfffAKUw6/1SyAY/b5HN4mzt4DmJxDi+zW08VPD/sNFpD1Ypj8zACd0NY/c0lvRlXE9eTxj//4X9NtDdKVcf8LRtGklrUPpJJ3G2M; Expires=Mon, 06 Jun 2022 16:37:07 GMT; Path=/; SameSite=None; Secure
+x-powered-by: Servlet/3.0 JSP/2.2 (GlassFish Server Open Source Edition 3.1.2.2 Java/Oracle Corporation/1.7)
+server: GlassFish Server Open Source Edition 3.1.2.2
+pragma: no-cache
+cache-control: no-cache, max-age=0, must-revalidate
+content-language: en-US
+X-Firefox-Spdy: h2
+ ctid 1 uncompressed-len 0 net-response-time-onstart 184 net-response-time-onstop 188   7Å
