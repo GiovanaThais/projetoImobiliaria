@@ -1,1 +1,0 @@
-[2022-02-03 01:52:52:781] [/home/giovana] Git Command failed: /usr/bin/git -c core.quotepath=false -c color.ui=false rev-parse --abbrev-ref --symbolic-full-name @ @{u} -- • bad revision '@' • 7 ms 

@@ -1,4 +1,6 @@
 {
     "tabnine.experimentalAutoImports": true,
-    "window.zoomLevel": 1
+    "workbench.iconTheme": "material-icon-theme",
+    "workbench.colorTheme": "Dracula",
+    "window.zoomLevel": 2
 }

@@ -1,0 +1,595 @@
+var finguerPrintEnabled = false;
+var webcamIsAvailable = false;
+var submitting = false;
+var showModal = false;
+var finguerPrintBasePath = 'http://localhost:8123/rest/fingerprint';
+var funcionario;
+var lat = null;
+var lng = null;
+var loadingRegistraPonto = Ladda.create(document.querySelector('#registraPonto'));
+var $codigoEmpregador = $('#codigoEmpregador');
+var $codigoPin = $('#codigoPin');
+
+function setToastrOption() {
+  toastr.options = {
+    "closeButton": true,
+    "debug": false,
+    "newestOnTop": false,
+    "progressBar": true,
+    "positionClass": "toast-top-right",
+    "preventDuplicates": true,
+    "onclick": null,
+    "showDuration": "300",
+    "hideDuration": "1000",
+    "timeOut": "7500",
+    "extendedTimeOut": "1000",
+    "showEasing": "swing",
+    "hideEasing": "linear",
+    "showMethod": "fadeIn",
+    "hideMethod": "fadeOut"
+  }
+}
+
+setToastrOption();
+
+$("#codigoPin").keyup(function (event) {
+  if (event.keyCode === 13) {
+    $('#registraPonto').click();
+  }
+});
+
+$(document).unbind("keyup").keyup(function (event) {
+  var code = event.which;
+  if (showModal && code === 13) {
+    $("#btn-modal-confirm").click();
+  }
+});
+
+$(document).ready(function () {
+
+  if ($('.hiddenIsInternalPage').val() === "true" && $('.hiddenCodigoEmpregador').val()) {
+    $codigoEmpregador.val($('.hiddenCodigoEmpregador').val());
+    $codigoEmpregador.prop('disabled', 'disabled');
+  }
+
+  readCodigoEmpregadorLocalStorage();
+  writeCodigoEmpregadorLocalStorage();
+  submitFormEvent();
+  requestDeviceAuthorization();
+  checkWebcamIsAvailable();
+  onCloseModalEvent();
+  resetPin();
+});
+
+function onCloseModalEvent() {
+  $('.modal-captura-foto').on('hidden.bs.modal', function () {
+    showModal = false;
+  });
+}
+
+function checkLocationIsAvaibled() {
+  if (!!navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function (position) {
+      lat = position.coords.latitude;
+      lng = position.coords.longitude;
+    });
+  }
+}
+
+function checkWebcamIsAvailable(functionResult) {
+  navigator.getMedia = (
+    navigator.getUserMedia ||
+    navigator.webkitGetUserMedia ||
+    navigator.mozGetUserMedia ||
+    navigator.msGetUserMedia ||
+    navigator.mediaDevices && navigator.mediaDevices.getUserMedia);
+
+  if (!navigator.getMedia) {
+    return
+  }
+
+  navigator.getMedia({video: true}, function () {
+
+    webcamIsAvailable = true;
+    if (functionResult) {
+      functionResult();
+    }
+
+  }, function () {
+
+    webcamIsAvailable = false;
+    if (functionResult) {
+      functionResult();
+    }
+
+  });
+}
+
+function submitFormEvent() {
+  $('#registraPonto').click(function () {
+
+    if (!validForm()) {
+      return;
+    }
+
+    checkWebcamIsAvailable(function () {
+      loadingRegistraPonto.start();
+      findEmployeeByPin();
+    });
+
+  });
+}
+
+function findEmployeeByPin() {
+  $.ajax({
+    url: '/Tangerino/ws/fingerprintWS/funcionario/empregador/' + $codigoEmpregador.val() + '/pin/' + $codigoPin.val(),
+    beforeSend: function (xhr) {
+      xhr.setRequestHeader('EMPREGADOR', $codigoEmpregador.val());
+      xhr.setRequestHeader('pin', $codigoPin.val());
+    }
+
+  }).done(function (response) {
+    funcionario = response.funcionario;
+
+    if (funcionario && funcionario.exigeLocalizacaoWeb) {
+      checkLocationIsAvaibled();
+    }
+
+    if (webcamIsAvailable && funcionario && funcionario.exigeFotoWeb) {
+      validateDeviceId();
+    } else {
+      checkFingerprintServerStatus(funcionario);
+    }
+
+  });
+}
+
+function startFingerprintCapture() {
+  if (finguerPrintEnabled) {
+    $('#buttonFinguerPrint').addClass('hovered');
+    $('#buttonFinguerPrint').removeClass('hide');
+
+    $.ajax({
+      url: finguerPrintBasePath + '/iniciar'
+    }).done(function () {
+      toastr['info']('Mantenha seu dedo cadastrado sobre o leitor biométrico!', '');
+      extractFingerprint();
+    }).fail(function () {
+      toastr['error']('Não foi possível se conectar ao leitor biométrico!', '');
+      stopFingerprintCapture();
+      loadingRegistraPonto.stop();
+    });
+  } else {
+    registraPonto(false);
+  }
+}
+
+function readCodigoEmpregadorLocalStorage() {
+  var codigoEmpregador = $('.hiddenCodigoEmpregador').val() || localStorage.getItem('codigoEmpregadorTangerino');
+  if (codigoEmpregador) {
+    $codigoEmpregador.val(codigoEmpregador.toUpperCase());
+  }
+
+  var deviceId = localStorage.getItem('codigoDispositivo');
+  if ('app.tangerino.com.br' === window.location.hostname && deviceId) {
+    document.cookie = "_tngDeviceId=" + deviceId + "; domain=.tangerino.com.br; path=/";
+  }
+}
+
+function writeCodigoEmpregadorLocalStorage() {
+  if ($('.hiddenCodigoEmpregador').val()) {
+    localStorage.setItem('codigoEmpregadorTangerino', $('.hiddenCodigoEmpregador').val());
+  }
+
+  $codigoEmpregador.change(function () {
+    var codigoEmpregador = $('.hiddenCodigoEmpregador').val() || $codigoEmpregador.val();
+    if (codigoEmpregador) {
+      localStorage.setItem('codigoEmpregadorTangerino', codigoEmpregador.toUpperCase());
+    }
+  });
+
+  var deviceId = localStorage.getItem('codigoDispositivo');
+  if ('app.tangerino.com.br' === window.location.hostname && deviceId) {
+    document.cookie = "_tngDeviceId=" + deviceId + "; domain=.tangerino.com.br; path=/";
+  }
+}
+
+function checkFingerprintServerStatus(funcionario) {
+
+  if (funcionario && funcionario.exigeFingerPrint) {
+    $.ajax({
+      url: finguerPrintBasePath + '/status',
+      timeout: 2000
+    }).done(function (data) {
+      if (data && data.status && data.status === 'OK') {
+        $('#buttonFinguerPrint').show(550);
+        finguerPrintEnabled = true;
+      } else {
+        $('#buttonFinguerPrint').hide(550);
+        finguerPrintEnabled = false;
+      }
+    }).fail(function () {
+      $('#buttonFinguerPrint').hide();
+    }).always(function () {
+      validateDeviceId();
+    });
+
+    return;
+  }
+
+  validateDeviceId();
+}
+
+function validateDeviceId() {
+
+  $.ajax({
+    url: '/Tangerino/ws/autorizaDipositivoWS/verifica/web/empregador/' + $codigoEmpregador.val() + '/pin/' + $codigoPin.val(),
+    method: 'POST',
+    data: JSON.stringify({
+      deviceId: localStorage.getItem('codigoDispositivo')
+    }),
+    contentType: "application/json; charset=utf-8",
+    dataType: "json"
+  }).done(function (deviceOptions) {
+
+    if (deviceOptions.status === 'ERROR') {
+      toastr['error'](deviceOptions.msg, '');
+      loadingRegistraPonto.stop();
+      return;
+    }
+
+    if (!deviceOptions.allowAll && deviceOptions.areadyRequest) {
+      toastr['warning']('Já existe uma solicitação em aberto para este navegador! Verifique com seu empregador.', '');
+      loadingRegistraPonto.stop();
+      resetPin();
+      return;
+    }
+
+    if (deviceOptions.denyAll) {
+      toastr['error']('Colaborador não autorizado a bater ponto via web. Favor entrar em contato com seu gestor.', '');
+      loadingRegistraPonto.stop();
+      resetPin();
+      return;
+    }
+
+    if (!deviceOptions.allowAll && !deviceOptions.areadyRequest) {
+      console.log(deviceOptions);
+      console.log(deviceOptions.deviceAuthorized);
+      $('.modal-solicata-autorizacao').modal('show');
+      if (deviceOptions.deviceAuthorized) {
+        $("#device-name-container").hide();
+      }
+      loadingRegistraPonto.stop();
+      return;
+    }
+
+    if (funcionario.id && funcionario.exigeFingerPrint
+      && (funcionario.fingerPrintTemplateLeft || funcionario.fingerPrintTemplateRight)) {
+      startFingerprintCapture();
+      loadingRegistraPonto.stop();
+      return;
+    }
+
+    if (webcamIsAvailable && funcionario && funcionario.exigeFotoWeb) {
+      startPhotoCapture();
+      loadingRegistraPonto.stop();
+      return;
+    }
+
+    registraPonto(false);
+  });
+}
+
+function requestDeviceAuthorization() {
+  $('#btn-request-authorization').click(function () {
+
+    var $deviceName = $('#device-name');
+    if (!$deviceName.val() && $("#device-name-container").is(":visible")) {
+      toastr['warning']('Defina o Nome do Dispositivo antes de Prosseguir!', '');
+      return;
+    }
+
+    $.ajax({
+      url: '/Tangerino/ws/autorizaDipositivoWS/registra/web/empregador/' + $codigoEmpregador.val() + '/pin/' + $codigoPin.val(),
+      method: 'POST',
+      data: JSON.stringify({
+        nome: $deviceName.val(),
+        navegador: navigator.userAgent,
+        deviceId: localStorage.getItem('codigoDispositivo')
+      }),
+      contentType: "application/json; charset=utf-8",
+      dataType: "json"
+    }).done(function (device) {
+
+      if (device.id) {
+        localStorage.setItem('codigoDispositivo', device.id);
+        document.cookie = "_tngDeviceId=" + device.id + "; domain=.tangerino.com.br; path=/";
+      }
+
+      $('.modal-solicata-autorizacao').modal('hide');
+      toastr['success']('Solicitação enviada com sucesso!', '');
+      resetPin();
+
+    });
+  });
+}
+
+function stopFingerprintCapture() {
+  $('#buttonFinguerPrint').removeClass('hovered');
+  $('#buttonFinguerPrint').addClass('hide');
+  $.ajax({
+    url: finguerPrintBasePath + '/finalizar',
+    dataType: "json",
+    contentType: "application/json",
+    timeout: 2000
+  }).done(function () {
+    console.log("StopFingerprintCapture: Sucsess!");
+  });
+}
+
+function extractFingerprint() {
+  $.ajax({
+    url: finguerPrintBasePath + '/extrair'
+  }).done(function (data) {
+    if (data && data.template) {
+      stopFingerprintCapture();
+      validateFingerprintTemplate(data.template);
+
+    } else {
+      extractFingerprint();
+    }
+  });
+}
+
+function validateFingerprintTemplate(digitalCapturada) {
+  $.ajax({
+    url: finguerPrintBasePath + '/validar',
+    method: 'POST',
+    data: JSON.stringify({
+      digitalCapturada: digitalCapturada,
+      digitaisCadastradas: [
+        funcionario.fingerPrintTemplateRight || '',
+        funcionario.fingerPrintTemplateLeft || ''
+      ]
+    }),
+    contentType: "application/json; charset=utf-8",
+    dataType: "json"
+  }).done(function (data) {
+    if (data && data.valid) {
+      registraPonto(true);
+    } else {
+      loadingRegistraPonto.stop();
+      toastr['error']('Biometria não corresponde ao cadastro do Colaborador!', '');
+    }
+  }).fail(function () {
+    loadingRegistraPonto.stop();
+    toastr['error']('Biometria não corresponde ao cadastro do Colaborador!', '');
+  });
+}
+
+function registraPonto(validFingerprint, extracPhoto) {
+  toastr.clear();
+
+  if (!funcionario || !funcionario.id) {
+    loadingRegistraPonto.stop();
+    toastr['error']('Colaborador não encontrado! Verifique o Código do Empregador e o PIN', '');
+    resetPin();
+    return;
+  }
+
+  if (!submitting) {
+    submitting = true;
+    $.ajax({
+      url: '/Tangerino/ws/pontoWS/ponto/sincronizacaoPontos/1.2',
+      method: 'POST',
+      beforeSend: function (xhr) {
+        xhr.setRequestHeader('EMPREGADOR', $codigoEmpregador.val().toUpperCase());
+        xhr.setRequestHeader('pin', $codigoPin.val());
+        xhr.setRequestHeader('funcionarioid', funcionario.id);
+        xhr.setRequestHeader('USERNAME', funcionario.id);
+        xhr.setRequestHeader('authorization', 'Basic ' + window.btoa(funcionario.id + ":" + $codigoEmpregador.val().toUpperCase()));
+        xhr.setRequestHeader('Content-Type', 'application/json');
+      },
+      data: JSON.stringify({
+        horaInicio: $('.labelRelogioDataHoraAtual').text(),
+        deviceId: localStorage.getItem('codigoDispositivo'),
+        online: 'true',
+        codigoEmpregador: $codigoEmpregador.val().toUpperCase(),
+        pin: $codigoPin.val(),
+        horaFim: '',
+        tipo: 'WEB',
+        foto: extracPhoto ? getBase64Image(document.getElementById("snap")) : '',
+        intervalo: '',
+        validFingerprint: validFingerprint,
+        versao: 'registra-ponto-fingerprint',
+        plataforma: 'WEB',
+        funcionarioid: funcionario.id,
+        idAtividade: 6,
+        latitude: funcionario.exigeLocalizacaoWeb ? lat : null,
+        longitude: funcionario.exigeLocalizacaoWeb ? lng : null
+      })
+    }).done(function (data) {
+      if (data && data.sucesso) {
+        toastr['success']('', data.friendlyMessage || data.mensagemDetalhada || data.mensagem);
+      } else {
+        toastr['warning'](data.detalhes, data.mensagem);
+      }
+
+      setTimeout(function () {
+        resetPin();
+        loadingRegistraPonto.stop();
+        submitting = false;
+      }, 3000)
+
+    });
+  }
+}
+
+function validForm() {
+  if (!$codigoEmpregador.val()) {
+    toastr['warning']('', 'Preencha seu Código de Empregador antes de prosseguir!');
+    $codigoEmpregador.focus();
+    return false;
+  }
+
+  if ($codigoEmpregador.val().length !== 5) {
+    toastr['warning']('', 'O Código de Empregador informado não é válido!');
+    $codigoEmpregador.focus();
+    return false;
+  }
+
+  if (!$codigoPin.val()) {
+    toastr['warning']('', 'Preencha seu PIN antes de prosseguir!');
+    $codigoPin.focus();
+    return false;
+  }
+
+  if (!(/^\w+$/.test($codigoPin.val()))) {
+    toastr['warning']('', 'O Código PIN informado não é válido!');
+    $codigoPin.focus();
+    return false;
+  }
+
+  return true;
+}
+
+function getBase64Image(img) {
+  var canvas = document.querySelector("canvas");
+  var ctx = canvas.getContext("2d");
+
+  ctx.drawImage(img, 10, 10);
+  return canvas.toDataURL();
+}
+
+function startPhotoCapture() {
+  showModal = true;
+  $('.modal-captura-foto').modal('show');
+  $('.capture-photo-container').show(650);
+
+  var video = document.querySelector('#camera-stream');
+  var error_message = document.querySelector('#error-message');
+  var image = document.querySelector('#snap');
+
+  navigator.getMedia = (
+    navigator.getUserMedia ||
+    navigator.webkitGetUserMedia ||
+    navigator.mozGetUserMedia ||
+    navigator.msGetUserMedia ||
+    navigator.mediaDevices && navigator.mediaDevices.getUserMedia);
+
+
+  if (!navigator.getMedia) {
+    displayErrorMessage("Este navegador não suporta o uso da câmera.");
+  } else {
+    // Request the camera.
+    navigator.getMedia({
+        video: true
+      }, function (stream) { // Success Callback
+        video.srcObject = stream;
+        video.play();
+        video.onplay = function () {
+          showVideo();
+        };
+      }, function (err) { // Error Callback
+        displayErrorMessage("Erro ao acessar o stream da câmera: " + err.name, err);
+      }
+    );
+  }
+
+  function showVideo() {
+    hideUI();
+    video.classList.add("visible");
+  }
+
+  function displayErrorMessage(error_msg, error) {
+    error = error || "";
+    if (error) {
+      console.error(error);
+    }
+
+    error_message.innerText = error_msg;
+
+    hideUI();
+    error_message.classList.add("visible");
+  }
+
+
+  function hideUI() {
+    video.classList.remove("visible");
+    error_message.classList.remove("visible");
+  }
+
+  $('#btn-modal-confirm').off('click').on('click', function (e) {
+    e.preventDefault();
+
+    var snap = takeSnapshot();
+
+    image.setAttribute('src', snap);
+    image.classList.add("visible");
+    video.pause();
+
+    registraPonto(false, true);
+
+    clearCanvas();
+    $('.modal-captura-foto').modal('hide');
+    showModal = false;
+
+    image.setAttribute('src', "");
+    image.classList.remove("visible");
+    video.play();
+  });
+
+  function takeSnapshot() {
+    var hidden_canvas = document.querySelector('canvas'),
+      context = hidden_canvas.getContext('2d');
+
+    var width = video.videoWidth,
+      height = video.videoHeight;
+
+    if (width && height) {
+      hidden_canvas.width = width;
+      hidden_canvas.height = height;
+
+      context.drawImage(video, 0, 0, width, height);
+      return hidden_canvas.toDataURL('image/png');
+    }
+  }
+
+  function clearCanvas() {
+    var hidden_canvas = document.querySelector('canvas');
+    var context = hidden_canvas.getContext('2d');
+    context.clearRect(0, 0, hidden_canvas.width, hidden_canvas.height);
+  }
+}
+
+function resetPin() {
+  $codigoPin.val('')
+}
+��'�           b���DV5jb��   p    O^partitionKey=%28https%2Ctangerino.com.br%29,:https://app.tangerino.com.br/Tangerino/web/js/service/register.js strongly-framed 1 security-info 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 request-method GET response-head HTTP/2 200 OK
+date: Wed, 01 Jun 2022 02:28:45 GMT
+content-type: text/javascript
+content-length: 15670
+x-powered-by: Servlet/3.0 JSP/2.2 (GlassFish Server Open Source Edition 3.1.2.2 Java/Oracle Corporation/1.7)
+server: GlassFish Server Open Source Edition 3.1.2.2
+access-control-allow-origin: *
+access-control-allow-headers: *
+access-control-allow-methods: GET, OPTIONS, HEAD, PUT, POST
+accept-ranges: bytes
+etag: W/"15670-1653979223000"
+last-modified: Tue, 31 May 2022 06:40:23 GMT
+X-Firefox-Spdy: h2
+ original-response-headers date: Wed, 01 Jun 2022 02:28:45 GMT
+content-type: text/javascript
+content-length: 15670
+set-cookie: AWSALB=D4Tj4IZiZHHHru0TVmyFXyLE77coAc3UJaU4W3QCJFhMeUWa0p71dibjyighSY61fUFM+GSjol5H2kIfFda6hxLJyrOIWEA5SvtgWhIV1vqDgtci5alglpTRT9+4; Expires=Wed, 08 Jun 2022 02:28:45 GMT; Path=/
+set-cookie: AWSALBCORS=D4Tj4IZiZHHHru0TVmyFXyLE77coAc3UJaU4W3QCJFhMeUWa0p71dibjyighSY61fUFM+GSjol5H2kIfFda6hxLJyrOIWEA5SvtgWhIV1vqDgtci5alglpTRT9+4; Expires=Wed, 08 Jun 2022 02:28:45 GMT; Path=/; SameSite=None; Secure
+x-powered-by: Servlet/3.0 JSP/2.2 (GlassFish Server Open Source Edition 3.1.2.2 Java/Oracle Corporation/1.7)
+server: GlassFish Server Open Source Edition 3.1.2.2
+access-control-allow-origin: *
+access-control-allow-headers: *
+access-control-allow-methods: GET, OPTIONS, HEAD, PUT, POST
+accept-ranges: bytes
+etag: W/"15670-1653979223000"
+last-modified: Tue, 31 May 2022 06:40:23 GMT
+X-Firefox-Spdy: h2
+ ctid 2 uncompressed-len 0 net-response-time-onstart 279 net-response-time-onstop 285   =6
